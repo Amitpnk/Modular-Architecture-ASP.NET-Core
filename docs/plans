@@ -1,0 +1,23 @@
+Phase 1
+
+WebAPI
+Code review + discussion + code refactor
+(BaseController + naming convention - port/adapter + Controller in 
+Connecting to inmemory db
+Asp.net core features
+
+Phase 2
+
+Project template (dotnet core template/VSIX)
+SG Standard - Swagger, Authentication
+Integrate to App generator
+
+Phase 3
+
+Monitoring
+Logging
+
+Phase 4
+
+gRPC
+and other 
