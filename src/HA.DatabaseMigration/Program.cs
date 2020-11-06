@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace HA.WebAPI
+namespace HA.DatabaseMigration
 {
     public class Program
     {

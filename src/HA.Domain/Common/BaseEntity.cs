@@ -2,7 +2,6 @@
 
 namespace HA.Domain.Common
 {
-
     public abstract class BaseEntity<TKey> : IHasKey<TKey>
     {
         [Key]
@@ -10,4 +9,3 @@ namespace HA.Domain.Common
 
     }
 }
-

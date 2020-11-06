@@ -4,15 +4,17 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>HA.WebAPI.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
 
+
+ 
   
   <ItemGroup>
-    <ProjectReference Include="..\HA.Port.Card\HA.Port.Card.csproj" />
-    <ProjectReference Include="..\HA.Port.Deal\HA.Port.Deal.csproj" />
+    <ProjectReference Include="..\HA.Adapter.DealModule\HA.Adapter.DealModule.csproj" />
+    <ProjectReference Include="..\HA.Adapter.Persistence\HA.Adapter.Persistence.csproj" />
   </ItemGroup>
 
 

@@ -3,8 +3,6 @@ using System.Diagnostics;
 
 namespace HA.WebAPI.Controllers
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
     public class MetaController : ControllerBase
     {
         [HttpGet("/info")]
