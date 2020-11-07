@@ -73,7 +73,7 @@ namespace HA.WebAPI
 
             log.AddSerilog();
 
-            //app.UseExceptionHandlerMiddleware();
+            app.UseExceptionHandlerMiddleware();
 
             app.UseSwagger();
 

@@ -1,5 +1,7 @@
 ﻿using HA.Application.Behaviours;
+using HA.Application.Middleware;
 using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +20,12 @@ namespace HA.Application
                 config.AssumeDefaultVersionWhenUnspecified = true;
                 config.ReportApiVersions = true;
             });
+        }
+
+
+        public static void UseExceptionHandlerMiddleware(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<CustomExceptionHandlerMiddleware>();
         }
     }
 }
