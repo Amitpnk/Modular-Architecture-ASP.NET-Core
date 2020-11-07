@@ -13,11 +13,20 @@ namespace HA.Adapter.Persistence
             IConfiguration configuration,
             IConfigurationRoot configRoot)
         {
-            serviceCollection.AddDbContext<ApplicationDbContext>(opt =>
+
+            if (configuration.GetValue<bool>("UseInMemoryDatabase"))
             {
-                opt.EnableSensitiveDataLogging(false);
-                opt.UseSqlServer(configuration.GetConnectionString("HexaArchConn"));
-            });
+                serviceCollection.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseInMemoryDatabase("HexaArchConnInMemoryDb"));
+            }
+            else
+            {
+                serviceCollection.AddDbContext<ApplicationDbContext>(opt =>
+                {
+                    opt.EnableSensitiveDataLogging(false);
+                    opt.UseSqlServer(configuration.GetConnectionString("HexaArchConn"));
+                });
+            }
 
             serviceCollection.AddTransient(typeof(IGenericRepositoryAsync<,>), typeof(GenericRepositoryAsync<,>));
         }
