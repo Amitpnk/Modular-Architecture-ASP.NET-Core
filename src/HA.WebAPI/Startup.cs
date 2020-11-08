@@ -1,6 +1,8 @@
 using HA.Adapter.DealModule;
 using HA.Adapter.Persistence;
 using HA.Application;
+using HA.Domain.Services;
+using HA.WebAPI.ConfigurationOptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -17,12 +19,16 @@ namespace HA.WebAPI
     public class Startup
     {
         private readonly IConfigurationRoot configRoot;
+        private AppSettings AppSettings { get; set; }
         public Startup(IConfiguration configuration)
         {
             Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
             Configuration = configuration;
             IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
             configRoot = builder.Build();
+
+            AppSettings = new AppSettings();
+            Configuration.Bind(AppSettings);
         }
 
         public IConfiguration Configuration { get; }
@@ -34,7 +40,7 @@ namespace HA.WebAPI
 
             services.AddDealModule();
 
-            services.AddPersistence(Configuration, configRoot);
+            services.AddPersistence(Configuration, configRoot, AppSettings);
 
             // move to infrastucture layer
             services.AddSwaggerGen(setupAction =>

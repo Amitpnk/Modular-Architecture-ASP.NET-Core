@@ -8,14 +8,10 @@
     <DocumentationFile>HA.WebAPI.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
-
-
- 
   
   <ItemGroup>
     <ProjectReference Include="..\HA.Adapter.DealModule\HA.Adapter.DealModule.csproj" />
     <ProjectReference Include="..\HA.Adapter.Persistence\HA.Adapter.Persistence.csproj" />
   </ItemGroup>
-
 
 </Project>
