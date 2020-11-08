@@ -1,0 +1,15 @@
+{
+    "author": "Amit Naik",
+    "classifications": [
+      "Web"
+    ],
+    "description": "Complete solution template which is built on Hexagonal Architecture with all essential feature, best practice, testing Strategy using the testing pyramid and documentation using .NET Core!",
+    "name": "Hexagonal architecture template",
+    "identity": "MyProject.StarterWeb",
+    "tags": {
+      "language": "C#"                
+    },
+    "shortName": "HexaArch",
+    "sourceName": "HA",
+    "preferNameDirectory": "true"
+}

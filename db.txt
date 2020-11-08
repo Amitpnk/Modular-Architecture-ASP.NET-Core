@@ -1,3 +1,0 @@
-add-migration Initial-commit-Application -Context ApplicationDbContext -o Migrations/Application
-
-update-database -Context ApplicationDbContext 

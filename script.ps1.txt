@@ -1,0 +1,28 @@
+Installation of dotnet template
+
+Step 1:
+dotnet new --install <path>
+
+example 1:
+dotnet new --install D:\GitRepo\Hexagonal-Architecture-ASP.NET-Core\src
+example 2:
+(if project is in local path)
+dotnet new --install ./
+example 3:
+dotnet new --install ./src/
+
+Step 2:
+(redirect to different folder and check folder is empty)
+ls
+
+Step 3:
+dotnet new HexaArch -o <project-name>
+
+dotnet new HexaArch -o Xone.Tau
+cd Xone.Tau
+
+
+Database migration
+
+add-migration Initial-commit-Application -Context ApplicationDbContext -o Migrations/Application
+update-database -Context ApplicationDbContext 
