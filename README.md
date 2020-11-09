@@ -1,1 +1,0 @@
-# Hexagonal-Architecture-ASP.NET-Core
