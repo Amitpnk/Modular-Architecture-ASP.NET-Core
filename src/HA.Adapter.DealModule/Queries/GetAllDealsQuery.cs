@@ -12,6 +12,7 @@ namespace HA.Adapter.DealModule.Queries
 {
     public class GetAllDealsQuery : IRequest<IEnumerable<DealViewModel>>
     {
+        // Todo: Pagination to integrate
         //    public int PageNumber { get; set; }
         //    public int PageSize { get; set; }
     }

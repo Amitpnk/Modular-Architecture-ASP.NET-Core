@@ -2,7 +2,6 @@ using HA.Adapter.DealModule;
 using HA.Adapter.Persistence;
 using HA.Application;
 using HA.Domain.Services;
-using HA.WebAPI.ConfigurationOptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -42,7 +41,7 @@ namespace HA.WebAPI
 
             services.AddPersistence(Configuration, configRoot, AppSettings);
 
-            // move to infrastucture layer
+            // Todo: move to infrastucture layer
             services.AddSwaggerGen(setupAction =>
             {
                 setupAction.SwaggerDoc(
@@ -56,12 +55,12 @@ namespace HA.WebAPI
                         {
                             Email = "amit.naik8103@gmail.com",
                             Name = "Amit Naik",
-                            Url = new Uri("https://amitpnk.github.io/")
+                            Url = new Uri(AppSettings.ApplicationDetail.ContactWebsite)
                         },
                         License = new Microsoft.OpenApi.Models.OpenApiLicense()
                         {
                             Name = "MIT License",
-                            Url = new Uri("https://opensource.org/licenses/MIT")
+                            Url = new Uri(AppSettings.ApplicationDetail.LicenseDetail)
                         }
                     });
                 var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

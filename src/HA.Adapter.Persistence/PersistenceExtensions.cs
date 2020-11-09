@@ -25,7 +25,6 @@ namespace HA.Adapter.Persistence
                 {
                     opt.EnableSensitiveDataLogging(false);
                     opt.UseSqlServer(appSettings.ConnectionStrings.HexaArchConn);
-                    //opt.UseSqlServer(configuration.GetConnectionString("HexaArchConn"));
                 });
             }
 
