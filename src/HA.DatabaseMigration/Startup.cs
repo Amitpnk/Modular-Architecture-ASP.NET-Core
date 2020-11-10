@@ -11,11 +11,15 @@ namespace HA.DatabaseMigration
 {
     public class Startup
     {
+        private readonly IConfigurationRoot configRoot;
         public IConfiguration Configuration { get; }
         private AppSettings AppSettings { get; set; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+            configRoot = builder.Build();
 
             AppSettings = new AppSettings();
             Configuration.Bind(AppSettings);
@@ -23,7 +27,7 @@ namespace HA.DatabaseMigration
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddPersistence(Configuration, AppSettings);
+            services.AddPersistence(Configuration, configRoot, AppSettings);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
