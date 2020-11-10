@@ -17,20 +17,17 @@ namespace HA.WebAPI
 {
     public class Startup
     {
-        private readonly IConfigurationRoot configRoot;
+        public IConfiguration Configuration { get; }
         private AppSettings AppSettings { get; set; }
         public Startup(IConfiguration configuration)
         {
             Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
             Configuration = configuration;
-            IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
-            configRoot = builder.Build();
 
             AppSettings = new AppSettings();
             Configuration.Bind(AppSettings);
         }
 
-        public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -39,7 +36,7 @@ namespace HA.WebAPI
 
             services.AddDealModule();
 
-            services.AddPersistence(Configuration, configRoot, AppSettings);
+            services.AddPersistence(Configuration, AppSettings);
 
             // Todo: move to infrastucture layer
             services.AddSwaggerGen(setupAction =>

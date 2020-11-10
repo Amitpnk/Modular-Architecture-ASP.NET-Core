@@ -12,7 +12,7 @@ namespace HA.Adapter.Persistence
     {
         public static void AddPersistence(this IServiceCollection serviceCollection,
             IConfiguration configuration,
-            IConfigurationRoot configRoot, AppSettings appSettings)
+            AppSettings appSettings)
         {
             if (configuration.GetValue<bool>("UseInMemoryDatabase"))
             {
