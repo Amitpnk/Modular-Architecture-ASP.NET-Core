@@ -20,14 +20,14 @@ namespace HA.Domain.Unit.Test.Services
         }
 
         [Test]
-        public void TestSetAndGetName()
+        public void TestSetAndGetContactWebsite()
         {
             _applicationDetail.ContactWebsite = ContactWebsite;
             Assert.That(_applicationDetail.ContactWebsite, Is.EqualTo(ContactWebsite));
         }
 
         [Test]
-        public void TestSetAndGetDescription()
+        public void TestSetAndGetLicenseDetail()
         {
             _applicationDetail.LicenseDetail = LicenseDetail;
             Assert.That(_applicationDetail.LicenseDetail, Is.EqualTo(LicenseDetail));
