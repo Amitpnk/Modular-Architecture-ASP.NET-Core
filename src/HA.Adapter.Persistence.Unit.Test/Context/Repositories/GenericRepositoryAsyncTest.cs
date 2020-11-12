@@ -4,6 +4,7 @@ using HA.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,11 +14,19 @@ namespace HA.Adapter.Persistence.Unit.Test.Context.Repositories
     {
         private DbContextOptionsBuilder builder;
 
-        Deal deal, deal2, deal3, deal4;
-        Guid id1 = Guid.NewGuid();
-        Guid id2 = Guid.NewGuid();
-        Guid id3 = Guid.NewGuid();
-        Guid id4 = Guid.NewGuid();
+        List<Deal> deals;
+
+        private static List<Deal> DealList()
+        {
+            return new List<Deal>()
+            {
+                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 123"  },
+                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 456" },
+                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 789"  },
+                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 147"  },
+                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 258"  }
+            };
+        }
 
         [SetUp]
         public void Setup()
@@ -25,30 +34,7 @@ namespace HA.Adapter.Persistence.Unit.Test.Context.Repositories
             builder = new DbContextOptionsBuilder();
             builder.UseInMemoryDatabase("InMemoryDealDB");
 
-            deal = new Deal
-            {
-                Id = id1,
-                Name = "IRD",
-                Description = "IRD Deal 123"
-            };
-            deal2 = new Deal
-            {
-                Id = id2,
-                Name = "IRD",
-                Description = "IRD Deal 456"
-            };
-            deal3 = new Deal
-            {
-                Id = id3,
-                Name = "IRD",
-                Description = "IRD Deal 789"
-            };
-            deal4 = new Deal
-            {
-                Id = id4,
-                Name = "IRD",
-                Description = "IRD Deal 147"
-            };
+            deals = DealList();
         }
 
         [Test, Order(1)]
@@ -56,7 +42,7 @@ namespace HA.Adapter.Persistence.Unit.Test.Context.Repositories
         {
             using var context = new ApplicationDbContext(builder.Options);
             var genericRepository = new GenericRepositoryAsync<Deal, Guid>(context);
-            await genericRepository.AddAsync(deal);
+            await genericRepository.AddAsync(deals[0]);
             var result = genericRepository.SaveChanges();
             Assert.IsTrue(result);
         }
@@ -66,12 +52,12 @@ namespace HA.Adapter.Persistence.Unit.Test.Context.Repositories
         {
             using var context = new ApplicationDbContext(builder.Options);
             var genericRepository = new GenericRepositoryAsync<Deal, Guid>(context);
-            await genericRepository.AddAsync(deal2);
+            await genericRepository.AddAsync(deals[1]);
             genericRepository.SaveChanges();
 
-            var deals = await genericRepository.GetAllAsync();
+            var getAllDeal = await genericRepository.GetAllAsync();
 
-            Assert.LessOrEqual(2, deals.Count());
+            Assert.LessOrEqual(2, getAllDeal.Count());
         }
 
         [Test, Order(3)]
@@ -79,11 +65,11 @@ namespace HA.Adapter.Persistence.Unit.Test.Context.Repositories
         {
             using var context = new ApplicationDbContext(builder.Options);
             var genericRepository = new GenericRepositoryAsync<Deal, Guid>(context);
-            await genericRepository.AddAsync(deal3);
+            await genericRepository.AddAsync(deals[2]);
             genericRepository.SaveChanges();
 
-            var getdeal = genericRepository.GetByIdAsync(id3);
-            Assert.AreEqual(id3, getdeal.Result.Id);
+            var getdeal = genericRepository.GetByIdAsync(deals[2].Id);
+            Assert.AreEqual(deals[2].Id, getdeal.Result.Id);
 
         }
 
@@ -91,10 +77,13 @@ namespace HA.Adapter.Persistence.Unit.Test.Context.Repositories
         public async Task CheckGenenricRepositoryUpdateDeal()
         {
             using var context = new ApplicationDbContext(builder.Options);
-            var customerRepository = new GenericRepositoryAsync<Deal, Guid>(context);
-            await customerRepository.UpdateAsync(deal);
-            var result = customerRepository.SaveChanges();
-            Assert.IsTrue(result);
+            var genericRepository = new GenericRepositoryAsync<Deal, Guid>(context);
+
+            await genericRepository.AddAsync(deals[3]);
+            Assert.IsTrue(genericRepository.SaveChanges());
+
+            await genericRepository.UpdateAsync(deals[3]);
+            Assert.IsTrue(genericRepository.SaveChanges());
         }
 
         [Test, Order(5)]
@@ -103,9 +92,9 @@ namespace HA.Adapter.Persistence.Unit.Test.Context.Repositories
             using var context = new ApplicationDbContext(builder.Options);
             var genericRepository = new GenericRepositoryAsync<Deal, Guid>(context);
 
-            await genericRepository.AddAsync(deal4);
+            await genericRepository.AddAsync(deals[4]);
             Assert.IsTrue(genericRepository.SaveChanges());
-            await genericRepository.DeleteAsync(deal4.Id);
+            await genericRepository.DeleteAsync(deals[4].Id);
             Assert.IsTrue(genericRepository.SaveChanges());
         }
 
