@@ -2,7 +2,6 @@
 using HA.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
 
 namespace HA.Adapter.Persistence.Unit.Test.Context
 {
@@ -12,7 +11,7 @@ namespace HA.Adapter.Persistence.Unit.Test.Context
         public void CanInsertDealIntoDatabasee()
         {
             using var context = new ApplicationDbContext();
-            var deal= new Deal();
+            var deal = new Deal();
             context.Deals.Add(deal);
             Assert.AreEqual(EntityState.Added, context.Entry(deal).State);
         }
