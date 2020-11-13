@@ -2,6 +2,7 @@
 
  orbs:
   win: circleci/windows@2.2.0
+  sonarcloud: sonarsource/sonarcloud@1.0.1
 
  jobs:
    build:
@@ -12,12 +13,9 @@
        - run: dotnet build
        - run: dotnet test
        - sonarcloud/scan
-
-orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.1
-
-workflows:
-  main:
-    jobs:
-      - build:
+       
+ workflows:
+   main:
+     jobs:
+       - build:
           context: SonarCloud
