@@ -1,4 +1,5 @@
 ![.NET Core](https://github.com/Amitpnk/Hexagonal-Architecture-ASP.NET-Core/workflows/.NET%20Core/badge.svg)
+[![Build status](https://ci.appveyor.com/api/projects/status/bdlg2fek0oemwpd4?svg=true)](https://ci.appveyor.com/project/Amitpnk/hexagonal-architecture-asp-net-core)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Hexagonal-Architecture-ASP.NET-Core&metric=bugs)](https://sonarcloud.io/dashboard?id=Amitpnk_Hexagonal-Architecture-ASP.NET-Core)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Hexagonal-Architecture-ASP.NET-Core&metric=code_smells)](https://sonarcloud.io/dashboard?id=Amitpnk_Hexagonal-Architecture-ASP.NET-Core)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Hexagonal-Architecture-ASP.NET-Core&metric=coverage)](https://sonarcloud.io/dashboard?id=Amitpnk_Hexagonal-Architecture-ASP.NET-Core)
@@ -9,7 +10,6 @@
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Hexagonal-Architecture-ASP.NET-Core&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Amitpnk_Hexagonal-Architecture-ASP.NET-Core)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Hexagonal-Architecture-ASP.NET-Core&metric=security_rating)](https://sonarcloud.io/dashboard?id=Amitpnk_Hexagonal-Architecture-ASP.NET-Core)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Hexagonal-Architecture-ASP.NET-Core&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=Amitpnk_Hexagonal-Architecture-ASP.NET-Core)
-[![codecov](https://codecov.io/gh/Amitpnk/Hexagonal-Architecture-ASP.NET-Core/branch/main/graph/badge.svg)](https://codecov.io/gh/Amitpnk/Hexagonal-Architecture-ASP.NET-Core)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/cdfa9a0107e44a048a1bb69c529c6f62)](https://www.codacy.com/gh/Amitpnk/Hexagonal-Architecture-ASP.NET-Core/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Amitpnk/Hexagonal-Architecture-ASP.NET-Core&amp;utm_campaign=Badge_Grade)
 
 # Hexagonal-Architecture-ASP.NET-Core
@@ -22,13 +22,13 @@
 
 * Architecture
     - [x] Hexagonal architecture
-    - Screaming architecture
+    - [x] Screaming architecture
 * Design Pattern
-    - CQRS design pattern
-    - Decorator design pattern
-    - Mediator design pattern
-    - Repository design pattern
-    - Unit of work 
+    - [x] CQRS design pattern
+    - [ ] Decorator design pattern
+    - [x] Mediator design pattern
+    - [x] Repository design pattern
+    - [ ] Unit of work 
 * Backend
     - Language: C#
     - Framework: dotnet core 3.1, ASP.NET Core
