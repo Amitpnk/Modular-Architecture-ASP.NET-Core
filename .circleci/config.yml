@@ -10,7 +10,3 @@
      steps:
        - checkout
        - run: dotnet build
-     
-     steps:
-       - checkout
-       - run: dotnet test
