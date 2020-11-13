@@ -10,6 +10,7 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Hexagonal-Architecture-ASP.NET-Core&metric=security_rating)](https://sonarcloud.io/dashboard?id=Amitpnk_Hexagonal-Architecture-ASP.NET-Core)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Hexagonal-Architecture-ASP.NET-Core&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=Amitpnk_Hexagonal-Architecture-ASP.NET-Core)
 [![codecov](https://codecov.io/gh/Amitpnk/Hexagonal-Architecture-ASP.NET-Core/branch/main/graph/badge.svg)](https://codecov.io/gh/Amitpnk/Hexagonal-Architecture-ASP.NET-Core)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/cdfa9a0107e44a048a1bb69c529c6f62)](https://www.codacy.com/gh/Amitpnk/Hexagonal-Architecture-ASP.NET-Core/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Amitpnk/Hexagonal-Architecture-ASP.NET-Core&amp;utm_campaign=Badge_Grade)
 
 # Hexagonal-Architecture-ASP.NET-Core
 
