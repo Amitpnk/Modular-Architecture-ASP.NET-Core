@@ -1,0 +1,27 @@
+version: 1.0.{build}
+image: Visual Studio 2019
+branches:
+  only:
+    - main
+environment:
+  my_sonartoken_encrypted:
+    secure: zE4kj0NoeBd1XOBLkDjFZS5lQ//xT5CilUr6ie90FrfE58PkGC1mL1NHumRI3+91
+install:
+    - choco install "sonarscanner-msbuild-netcoreapp2.0" -y
+before_build:
+    - cmd: nuget restore HA.sln
+    - dotnet tool install -g dotnet-sonarscanner
+    # AppVeyor does not decrypt the secure env vars for PR builds (this prevents someone from submitting PR with malicious build script displaying those variables). So when AppVeyor initiates a Sonar analysis it immediately fails with error "The format of the analysis property sonar.login= is invalid". The only solution is to prevent PR builds initiating Sonar analysis using powershell. See https://medium.com/@stef.heyenrath/how-to-fix-sonarcloud-issue-in-a-github-pr-when-using-appveyor-integration-8909b49406b4    
+    - ps: 'if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { & dotnet sonarscanner begin /k:"Amitpnk_Hexagonal-Architecture-ASP.NET-Core" /o:"amitpnk" /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=$env:my_sonartoken_encrypted" }'
+build:
+    project: HA.sln
+    verbosity: minimal
+after_build:
+    - ps: 'if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { & dotnet sonarscanner end /d:"sonar.login=$env:my_sonartoken_encrypted" }' 
+notifications:
+- provider: Email
+  to:
+  - amit.naik8103@gmail.com
+  on_build_success: false
+  on_build_failure: false
+  on_build_status_changed: true
