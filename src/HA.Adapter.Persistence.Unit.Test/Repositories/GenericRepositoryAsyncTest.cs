@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HA.Adapter.Persistence.Unit.Test.Context.Repositories
+namespace HA.Adapter.Persistence.Unit.Test.Repositories
 {
     public class GenericRepositoryAsyncTest
     {
@@ -97,8 +97,6 @@ namespace HA.Adapter.Persistence.Unit.Test.Context.Repositories
             await genericRepository.DeleteAsync(deals[4].Id);
             Assert.IsTrue(genericRepository.SaveChanges());
         }
-
-
 
     }
 }
