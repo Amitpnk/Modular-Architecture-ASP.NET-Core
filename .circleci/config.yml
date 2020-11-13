@@ -11,3 +11,13 @@
        - checkout
        - run: dotnet build
        - run: dotnet test
+       - sonarcloud/scan
+
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.1
+
+workflows:
+  main:
+    jobs:
+      - build:
+          context: SonarCloud
