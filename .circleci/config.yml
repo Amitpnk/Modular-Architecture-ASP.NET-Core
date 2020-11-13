@@ -9,5 +9,5 @@
     
      steps:
        - checkout
-       - run: dotnet build && dotnet test
-
+       - run: dotnet build
+       - run: dotnet test
