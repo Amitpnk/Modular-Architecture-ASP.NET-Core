@@ -32,8 +32,7 @@ namespace HA.Adapter.Persistence.Unit.Test.Repositories
         public void Setup()
         {
             builder = new DbContextOptionsBuilder();
-            builder.UseInMemoryDatabase("InMemoryDealDB");
-
+            builder.UseInMemoryDatabase(Guid.NewGuid().ToString());
             deals = DealList();
         }
 
