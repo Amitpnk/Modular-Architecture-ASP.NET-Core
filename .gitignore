@@ -354,3 +354,6 @@ MigrationBackup/
 
 # Identity Server 4 tempkey
 tempkey.jwk
+
+# SonarScanner
+.sonarqube/
