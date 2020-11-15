@@ -1,5 +1,6 @@
 ﻿using HA.Adapter.Persistence.Context;
 using HA.Adapter.Persistence.Repositories;
+using HA.Adapter.Persistence.Unit.Test.Common;
 using HA.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
@@ -12,36 +13,13 @@ namespace HA.Adapter.Persistence.Unit.Test.Repositories
 {
     public class GenericRepositoryAsyncTest
     {
-        private DbContextOptionsBuilder builder;
-
-        List<Deal> deals;
-
-        private static List<Deal> DealList()
-        {
-            return new List<Deal>()
-            {
-                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 123"  },
-                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 456" },
-                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 789"  },
-                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 147"  },
-                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 258"  }
-            };
-        }
-
-        [SetUp]
-        public void Setup()
-        {
-            builder = new DbContextOptionsBuilder();
-            builder.UseInMemoryDatabase(Guid.NewGuid().ToString());
-            deals = DealList();
-        }
-
+      
         [Test, Order(1)]
         public async Task CheckGenenricRepositoryAddDeal()
         {
-            using var context = new ApplicationDbContext(builder.Options);
+            using var context = ApplicationDbContextFactory.Create();
             var genericRepository = new GenericRepositoryAsync<Deal, Guid>(context);
-            await genericRepository.AddAsync(deals[0]);
+            await genericRepository.AddAsync(ApplicationDbContextFactory.DealList()[0]);
             var result = genericRepository.SaveChanges();
             Assert.IsTrue(result);
         }
@@ -49,9 +27,12 @@ namespace HA.Adapter.Persistence.Unit.Test.Repositories
         [Test, Order(2)]
         public async Task CheckGenenricRepositoryGetDeal()
         {
-            using var context = new ApplicationDbContext(builder.Options);
+            using var context = ApplicationDbContextFactory.Create();
             var genericRepository = new GenericRepositoryAsync<Deal, Guid>(context);
-            await genericRepository.AddAsync(deals[1]);
+
+            var deal = new Deal() { Id = Guid.NewGuid(), Name = "IRD", Description = "IRD Deal XXX" };
+
+            await genericRepository.AddAsync(deal);
             genericRepository.SaveChanges();
 
             var getAllDeal = await genericRepository.GetAllAsync();
@@ -62,38 +43,46 @@ namespace HA.Adapter.Persistence.Unit.Test.Repositories
         [Test, Order(3)]
         public async Task CheckGenenricRepositoryGetByIdDeal()
         {
-            using var context = new ApplicationDbContext(builder.Options);
+            using var context = ApplicationDbContextFactory.Create();
             var genericRepository = new GenericRepositoryAsync<Deal, Guid>(context);
-            await genericRepository.AddAsync(deals[2]);
+            var dealId = Guid.NewGuid();
+            var deal = new Deal() { Id = dealId, Name = "IRD", Description = "IRD Deal XXX" };
+            await genericRepository.AddAsync(deal);
             genericRepository.SaveChanges();
 
-            var getdeal = genericRepository.GetByIdAsync(deals[2].Id);
-            Assert.AreEqual(deals[2].Id, getdeal.Result.Id);
+            var getdeal = genericRepository.GetByIdAsync(dealId);
+            Assert.AreEqual(dealId, getdeal.Result.Id);
 
         }
 
         [Test, Order(4)]
         public async Task CheckGenenricRepositoryUpdateDeal()
         {
-            using var context = new ApplicationDbContext(builder.Options);
+            using var context = ApplicationDbContextFactory.Create();
             var genericRepository = new GenericRepositoryAsync<Deal, Guid>(context);
 
-            await genericRepository.AddAsync(deals[3]);
+            var dealId = Guid.NewGuid();
+            var deal = new Deal() { Id = dealId, Name = "IRD", Description = "IRD Deal XXX" };
+            await genericRepository.AddAsync(deal);
+            genericRepository.SaveChanges();
+
+            await genericRepository.UpdateAsync(deal);
             Assert.IsTrue(genericRepository.SaveChanges());
 
-            await genericRepository.UpdateAsync(deals[3]);
-            Assert.IsTrue(genericRepository.SaveChanges());
         }
 
         [Test, Order(5)]
         public async Task CheckGenenricRepositoryDeleteDeal()
         {
-            using var context = new ApplicationDbContext(builder.Options);
+            using var context = ApplicationDbContextFactory.Create();
             var genericRepository = new GenericRepositoryAsync<Deal, Guid>(context);
 
-            await genericRepository.AddAsync(deals[4]);
-            Assert.IsTrue(genericRepository.SaveChanges());
-            await genericRepository.DeleteAsync(deals[4].Id);
+            var dealId = Guid.NewGuid();
+            var deal = new Deal() { Id = dealId, Name = "IRD", Description = "IRD Deal XXX" };
+            await genericRepository.AddAsync(deal);
+            genericRepository.SaveChanges();
+
+            await genericRepository.DeleteAsync(dealId);
             Assert.IsTrue(genericRepository.SaveChanges());
         }
 
