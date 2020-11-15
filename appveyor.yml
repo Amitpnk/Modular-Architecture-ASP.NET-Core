@@ -7,7 +7,7 @@ environment:
   my_sonartoken_encrypted:
     secure: zE4kj0NoeBd1XOBLkDjFZS5lQ//xT5CilUr6ie90FrfE58PkGC1mL1NHumRI3+91
 install:
-    - choco install "sonarscanner-msbuild-netcoreapp3.0" -y
+    - choco install "sonarscanner-msbuild-netcoreapp2.0" -y
 before_build:
     - cmd: nuget restore HA.sln
     - dotnet tool install -g dotnet-sonarscanner
