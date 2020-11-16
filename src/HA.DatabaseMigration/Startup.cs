@@ -11,19 +11,19 @@ namespace HA.DatabaseMigration
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        public AppSettings appSettings { get; set; }
+        public AppSettings AppSettings { get; set; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
 
-            appSettings = new AppSettings();
-            Configuration.Bind(appSettings);
+            AppSettings = new AppSettings();
+            Configuration.Bind(AppSettings);
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddPersistence(Configuration, appSettings);
+            services.AddPersistence(Configuration, AppSettings);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
