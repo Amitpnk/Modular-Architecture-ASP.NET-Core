@@ -1,4 +1,5 @@
 using HA.Adapter.Persistence;
+using HA.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,19 +11,19 @@ namespace HA.DatabaseMigration
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        private AppSettings AppSettings { get; set; }
+        public AppSettings appSettings { get; set; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
 
-            AppSettings = new AppSettings();
-            Configuration.Bind(AppSettings);
+            appSettings = new AppSettings();
+            Configuration.Bind(appSettings);
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddPersistence(Configuration, AppSettings);
+            services.AddPersistence(Configuration, appSettings);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

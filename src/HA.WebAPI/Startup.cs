@@ -17,15 +17,15 @@ namespace HA.WebAPI
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-        private AppSettings AppSettings { get; set; }
+        private IConfiguration _configuration { get; }
+        private AppSettings appSettings { get; set; }
         public Startup(IConfiguration configuration)
         {
             Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
-            Configuration = configuration;
+            _configuration = configuration;
 
-            AppSettings = new AppSettings();
-            Configuration.Bind(AppSettings);
+            appSettings = new AppSettings();
+            _configuration.Bind(appSettings);
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -36,7 +36,7 @@ namespace HA.WebAPI
 
             services.AddDealModule();
 
-            services.AddPersistence(Configuration, AppSettings);
+            services.AddPersistence(_configuration, appSettings);
 
             // Todo: move to infrastucture layer
             services.AddSwaggerGen(setupAction =>
@@ -52,12 +52,12 @@ namespace HA.WebAPI
                         {
                             Email = "amit.naik8103@gmail.com",
                             Name = "Amit Naik",
-                            Url = new Uri(AppSettings.ApplicationDetail.ContactWebsite)
+                            Url = new Uri(appSettings.ApplicationDetail.ContactWebsite)
                         },
                         License = new Microsoft.OpenApi.Models.OpenApiLicense()
                         {
                             Name = "MIT License",
-                            Url = new Uri(AppSettings.ApplicationDetail.LicenseDetail)
+                            Url = new Uri(appSettings.ApplicationDetail.LicenseDetail)
                         }
                     });
                 var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
