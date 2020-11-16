@@ -1,5 +1,4 @@
-﻿using HA.Adapter.Persistence.Context;
-using HA.Adapter.Persistence.Unit.Test.Common;
+﻿using HA.Adapter.Persistence.Unit.Test.Common;
 using HA.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;

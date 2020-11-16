@@ -1,11 +1,8 @@
-﻿using HA.Adapter.Persistence.Context;
-using HA.Adapter.Persistence.Repositories;
+﻿using HA.Adapter.Persistence.Repositories;
 using HA.Adapter.Persistence.Unit.Test.Common;
 using HA.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +10,7 @@ namespace HA.Adapter.Persistence.Unit.Test.Repositories
 {
     public class GenericRepositoryAsyncTest
     {
-      
+
         [Test, Order(1)]
         public async Task CheckGenenricRepositoryAddDeal()
         {
