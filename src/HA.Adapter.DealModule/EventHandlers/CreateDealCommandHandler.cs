@@ -2,6 +2,7 @@
 using HA.Adapter.DealModule.Commands;
 using HA.Adapter.DealModule.ViewModel;
 using HA.Application.Contract;
+using HA.Application.Exceptions;
 using HA.Domain.Entities;
 using MediatR;
 using System;
@@ -21,6 +22,11 @@ namespace HA.Adapter.DealModule.EventHandlers
         }
         public async Task<DealViewModel> Handle(CreateDealCommand request, CancellationToken cancellationToken)
         {
+            if (request == null)
+            {
+                throw new BadRequestException("Null exception");
+            }
+
             var entity = new Deal
             {
                 Id = Guid.NewGuid(),

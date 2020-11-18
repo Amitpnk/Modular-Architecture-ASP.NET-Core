@@ -5,13 +5,12 @@ namespace HA.Adapter.DealModule.Validation
 {
     public class CreateDealCommandValidator : AbstractValidator<CreateDealCommand>
     {
+        private const int maxLength = 50;
         public CreateDealCommandValidator()
         {
-            RuleFor(x => x.Description).NotEmpty()
-                .NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(x => x.Description).NotEmpty();
             RuleFor(x => x.Name).NotEmpty()
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+                .MaximumLength(maxLength);
         }
     }
 }

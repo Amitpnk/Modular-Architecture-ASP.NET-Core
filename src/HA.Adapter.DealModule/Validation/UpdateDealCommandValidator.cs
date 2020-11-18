@@ -7,15 +7,9 @@ namespace HA.Adapter.DealModule.Validation
     {
         public UpdateDealCommandValidator()
         {
-            RuleFor(x => x.Id)
-                .NotEmpty().WithMessage("{PropertyName} is required.");
-
-            RuleFor(x => x.Name)
-                .NotEmpty().WithMessage("{PropertyName} is required.");
-
-            RuleFor(x => x.Description).NotEmpty()
-                .NotEmpty().WithMessage("{PropertyName} is required.");
-
+            RuleFor(x => x.Id);
+            RuleFor(x => x.Name);
+            RuleFor(x => x.Description).NotEmpty();
         }
     }
 }

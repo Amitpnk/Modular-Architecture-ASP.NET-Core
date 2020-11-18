@@ -19,9 +19,12 @@ namespace HA.Adapter.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Fluent API configurations 
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            modelBuilder.Seed();
+            if (modelBuilder != null)
+            {
+                //Fluent API configurations 
+                modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+                modelBuilder.Seed();
+            }
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

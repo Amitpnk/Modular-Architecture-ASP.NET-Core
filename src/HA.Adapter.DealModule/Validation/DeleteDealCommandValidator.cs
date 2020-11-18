@@ -7,9 +7,7 @@ namespace HA.Adapter.DealModule.Validation
     {
         public DeleteDealCommandValidator()
         {
-            RuleFor(v => v.DealId)
-                .NotEmpty().WithMessage("{PropertyName} is required.");
-
+            RuleFor(v => v.DealId).NotEmpty();
         }
     }
 }
