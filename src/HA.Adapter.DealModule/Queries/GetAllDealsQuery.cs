@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HA.Adapter.DealModule.ViewModel;
 using HA.Application.Contract;
+using HA.Application.Exceptions;
 using HA.Domain.Entities;
 using MediatR;
 using System;
@@ -31,6 +32,11 @@ namespace HA.Adapter.DealModule.Queries
 
         public async Task<IEnumerable<DealViewModel>> Handle(GetAllDealsQuery request, CancellationToken cancellationToken)
         {
+            if (request == null)
+            {
+                throw new BadRequestException("Null exception");
+            }
+
             var DealsList = await _genericRepository.GetAllAsync();
             var DealsListVm = _mapper.Map<IEnumerable<DealViewModel>>(DealsList);
             return DealsListVm;

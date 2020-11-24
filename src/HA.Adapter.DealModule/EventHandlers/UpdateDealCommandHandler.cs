@@ -22,6 +22,11 @@ namespace HA.Adapter.DealModule.EventHandlers
         }
         public async Task<DealViewModel> Handle(UpdateDealCommand request, CancellationToken cancellationToken)
         {
+            if (request == null)
+            {
+                throw new BadRequestException("Null exception");
+            }
+
             var entity = new Deal
             {
                 Id = request.Id,

@@ -19,11 +19,11 @@ namespace HA.Adapter.Persistence.Context
 
         private static List<Deal> DealList()
         {
-            return new List<Deal>()
+            return new List<Deal>
             {
-                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 123"  },
-                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 456" },
-                new Deal() {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 789"  }
+                new Deal {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 123"  },
+                new Deal {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 456" },
+                new Deal {Id=Guid.NewGuid(), Name= "IRD", Description= "IRD Deal 789"  }
             };
         }
     }

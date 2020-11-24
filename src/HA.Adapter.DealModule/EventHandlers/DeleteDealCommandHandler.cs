@@ -22,7 +22,13 @@ namespace HA.Adapter.DealModule.EventHandlers
 
         public async Task<Unit> Handle(DeleteDealCommand request, CancellationToken cancellationToken)
         {
+            if (request == null)
+            {
+                throw new BadRequestException("Null exception");
+            }
+
             var deal = await _genericRepository.GetByIdAsync(request.DealId);
+
             if (deal == null)
             {
                 throw new NotFoundException(nameof(Deal), request.DealId);
