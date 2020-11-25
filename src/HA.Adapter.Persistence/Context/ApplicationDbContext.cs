@@ -10,7 +10,7 @@ namespace HA.Adapter.Persistence.Context
         public ApplicationDbContext()
         {
         }
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 
