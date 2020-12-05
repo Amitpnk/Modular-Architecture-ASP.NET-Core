@@ -14,9 +14,9 @@ namespace HA.Adapter.DealModule.Controllers.v1
     public class DealController : BaseController
     {
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] ResourceParameters resourceParameters)
+        public async Task<IActionResult> GetAll([FromQuery] QueryStringParameters queryStringParameters)
         {
-            var vm = await Mediator.Send(new GetAllDealsQuery(resourceParameters.PageNumber, resourceParameters.PageSize));
+            var vm = await Mediator.Send(new GetAllDealsQuery(queryStringParameters.PageNumber, queryStringParameters.PageSize));
        
             var paginationMetadata = new
             {

@@ -1,6 +1,6 @@
 ﻿namespace HA.Domain.Services
 {
-    public class ResourceParameters
+    public class QueryStringParameters
     {
         const int maxPageSize = 20;
         public int PageNumber { get; set; } = 1;
