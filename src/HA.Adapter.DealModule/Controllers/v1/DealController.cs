@@ -29,7 +29,7 @@ namespace HA.Adapter.DealModule.Controllers.v1
             Response.Headers.Add("X-Pagination",
                 JsonSerializer.Serialize(paginationMetadata));
 
-            return Ok(vm);
+            return Ok(vm.Items);
         }
 
         [HttpGet("{id}")]

@@ -6,12 +6,13 @@ using HA.Domain.Entities;
 using HA.Domain.Services;
 using MediatR;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace HA.Adapter.DealModule.Queries
 {
-    public class GetAllDealsQuery : IRequest<PagedList<Deal>>
+    public class GetAllDealsQuery : IRequest<PagedResponse<DealViewModel>>
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
@@ -21,7 +22,7 @@ namespace HA.Adapter.DealModule.Queries
             PageSize = pageSize;
         }
     }
-    public class GetAllDealHandler : IRequestHandler<GetAllDealsQuery, PagedList<Deal>>
+    public class GetAllDealHandler : IRequestHandler<GetAllDealsQuery, PagedResponse<DealViewModel>>
     {
         private readonly IGenericRepositoryAsync<Deal, Guid> _genericRepository;
         private readonly IMapper _mapper;
@@ -32,7 +33,7 @@ namespace HA.Adapter.DealModule.Queries
             _mapper = mapper;
         }
 
-        public async Task<PagedList<Deal>> Handle(GetAllDealsQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResponse<DealViewModel>> Handle(GetAllDealsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
             {
@@ -40,7 +41,8 @@ namespace HA.Adapter.DealModule.Queries
             }
 
             var DealsList = await _genericRepository.GetPagedReponseAsync(request.PageNumber, request.PageSize);
-            return DealsList;
+            var DealsListVm = _mapper.Map<List<DealViewModel>>(DealsList);
+            return new PagedResponse<DealViewModel>(DealsListVm, DealsList.Count, request.PageNumber, request.PageSize);
         }
     }
 }
