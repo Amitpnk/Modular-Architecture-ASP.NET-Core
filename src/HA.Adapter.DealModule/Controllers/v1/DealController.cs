@@ -2,6 +2,7 @@
 using HA.Adapter.DealModule.Queries;
 using HA.Adapter.DealModule.ViewModel;
 using HA.Application.Controllers;
+using HA.Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,9 +13,9 @@ namespace HA.Adapter.DealModule.Controllers.v1
     public class DealController : BaseController
     {
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] ResourceParameters resourceParameters)
         {
-            var vm = await Mediator.Send(new GetAllDealsQuery());
+            var vm = await Mediator.Send(new GetAllDealsQuery(resourceParameters.PageNumber, resourceParameters.PageSize));
             return Ok(vm);
         }
 

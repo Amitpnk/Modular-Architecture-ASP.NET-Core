@@ -1,8 +1,10 @@
 ﻿using HA.Adapter.Persistence.Context;
 using HA.Application.Contract;
 using HA.Domain.Common;
+using HA.Domain.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HA.Adapter.Persistence.Repositories
@@ -38,9 +40,16 @@ namespace HA.Adapter.Persistence.Repositories
             return await table.FindAsync(id);
         }
 
+        public async Task<PagedList<TEntity>> GetPagedReponseAsync(int pageNumber, int pageSize)
+        {
+            var count = table.Count();
+            var items = table.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            return new PagedList<TEntity>(items, count, pageNumber, pageSize);
+        }
+
         public bool SaveChanges()
         {
-            return (_dbContext.SaveChanges() >= 0);
+            return _dbContext.SaveChanges() >= 0;
         }
 
         public async Task UpdateAsync(TEntity obj)

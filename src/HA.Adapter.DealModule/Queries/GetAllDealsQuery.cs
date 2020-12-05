@@ -13,14 +13,16 @@ namespace HA.Adapter.DealModule.Queries
 {
     public class GetAllDealsQuery : IRequest<IEnumerable<DealViewModel>>
     {
-        // Todo: Pagination to integrate
-        //    public int PageNumber { get; set; }
-        //    public int PageSize { get; set; }
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+        public GetAllDealsQuery(int pageNumber, int pageSize)
+        {
+            PageNumber = pageNumber;
+            PageSize = pageSize;
+        }
     }
-
     public class GetAllDealHandler : IRequestHandler<GetAllDealsQuery, IEnumerable<DealViewModel>>
     {
-
         private readonly IGenericRepositoryAsync<Deal, Guid> _genericRepository;
         private readonly IMapper _mapper;
 
@@ -37,7 +39,7 @@ namespace HA.Adapter.DealModule.Queries
                 throw new BadRequestException("Null exception");
             }
 
-            var DealsList = await _genericRepository.GetAllAsync();
+            var DealsList = await _genericRepository.GetPagedReponseAsync(request.PageNumber, request.PageSize);
             var DealsListVm = _mapper.Map<IEnumerable<DealViewModel>>(DealsList);
             return DealsListVm;
         }
