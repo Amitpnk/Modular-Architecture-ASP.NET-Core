@@ -6,6 +6,7 @@ using HA.Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace HA.Adapter.DealModule.Controllers.v1
@@ -16,6 +17,18 @@ namespace HA.Adapter.DealModule.Controllers.v1
         public async Task<IActionResult> GetAll([FromQuery] ResourceParameters resourceParameters)
         {
             var vm = await Mediator.Send(new GetAllDealsQuery(resourceParameters.PageNumber, resourceParameters.PageSize));
+       
+            var paginationMetadata = new
+            {
+                totalCount = vm.TotalCount,
+                pageSize = vm.PageSize,
+                currentPage = vm.CurrentPage,
+                totalPages = vm.TotalPages
+            };
+
+            Response.Headers.Add("X-Pagination",
+                JsonSerializer.Serialize(paginationMetadata));
+
             return Ok(vm);
         }
 
