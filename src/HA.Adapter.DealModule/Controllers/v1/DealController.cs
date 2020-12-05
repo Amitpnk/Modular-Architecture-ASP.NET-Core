@@ -17,7 +17,7 @@ namespace HA.Adapter.DealModule.Controllers.v1
         public async Task<IActionResult> GetAll([FromQuery] QueryStringParameters queryStringParameters)
         {
             var vm = await Mediator.Send(new GetAllDealsQuery(queryStringParameters.PageNumber, queryStringParameters.PageSize));
-       
+
             var paginationMetadata = new
             {
                 totalCount = vm.TotalCount,
