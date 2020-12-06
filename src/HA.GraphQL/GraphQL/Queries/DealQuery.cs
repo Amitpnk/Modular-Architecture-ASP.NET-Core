@@ -1,6 +1,8 @@
 ﻿using GraphQL;
 using GraphQL.Types;
 using HA.Adapter.Persistence.Context;
+using HA.Application.Contract;
+using HA.Domain.Entities;
 using HA.GraphQL.Types;
 using System;
 using System.Linq;
@@ -9,15 +11,27 @@ namespace HA.GraphQL.Queries
 {
     public class DealQuery : ObjectGraphType
     {
-        private readonly ApplicationDbContext _appContext;
-        public DealQuery(ApplicationDbContext appContext)
+        private readonly IGenericRepositoryAsync<Deal, Guid> _genericRepository;
+
+        public DealQuery(IGenericRepositoryAsync<Deal, Guid> genericRepository)
         {
-            this._appContext = appContext;
-            Name = "Query";
-            Field<ListGraphType<DealGraphType>>("deals", "Returns a list of Deal", resolve: context => _appContext.Deals.ToList());
-            //Field<DealGraphType>("deal", "Returns a Single Deal",
-            //    new QueryArguments(new QueryArgument<NonNullGraphType<GuidGraphType>> { Name = "id", Description = "Deal Id" }),
-            //        context => _appContext.Deals.Single(x => x.Id == context.Arguments["id"].GetPropertyValue<Guid>()));
+            _genericRepository = genericRepository;
+            Name = "DealQuery";
+            Field<ListGraphType<DealGraphType>>(
+                "deals",
+                "Returns a list of Deal",
+                resolve: context => _genericRepository.GetAllAsync());
+
+            Field<DealGraphType>(
+                "deal",
+                "Returns a Single Deal",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "id" }),
+                resolve: context =>
+                {
+                    var id = context.GetArgument<Guid>("id");
+                    return _genericRepository.GetByIdAsync(id);
+                }
+            );
         }
     }
 }
