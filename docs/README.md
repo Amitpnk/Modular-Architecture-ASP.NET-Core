@@ -41,11 +41,11 @@ Untick mark is yet to complete soon
     - [x] MS SQL and Inmemory DB
     - [x] DB Connectivity : Entityframework Core - Code First
 * Cloud server
-    - [x] Azure  (alternate is AWS)
+    - [ ] Azure  (alternate is AWS)
 * Service
     - [x] Web API (Restful service)
     - [ ] gRPC
-    - [ ] Graphql
+    - [x] Graphql
 * Feature
     - [x] Dataseeding
     - [x] Custom Exceptionn Handler
