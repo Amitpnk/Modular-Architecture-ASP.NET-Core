@@ -1,11 +1,10 @@
 using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
-using HA.Adapter.Persistence.Context;
+using HA.Adapter.Persistence;
+using HA.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,26 +13,26 @@ namespace HA.GraphQL
 {
     public class Startup
     {
+        private IConfiguration Configuration { get; }
+        private AppSettings AppSettings { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            AppSettings = new AppSettings();
+            Configuration.Bind(AppSettings);
         }
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-             options.UseSqlServer(
-                 Configuration.GetConnectionString("HexaArchConn"),
-                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+            services.AddPersistence(Configuration, AppSettings);
 
-            services.AddTransient<IDependencyResolver>(x => new FuncDependencyResolver(x.GetRequiredService));
-            services.AddTransient<DemoSchema>();
+            services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
+            services.AddScoped<DealSchema>();
+
             services.AddGraphQL(o => o.ExposeExceptions = true)
-                    .AddGraphTypes(ServiceLifetime.Transient);
-            services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
-            services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
-            services.AddControllers();
+                .AddGraphTypes(ServiceLifetime.Scoped)
+                .AddDataLoader();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -47,15 +46,8 @@ namespace HA.GraphQL
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
-            app.UseGraphQL<DemoSchema>();
+            app.UseGraphQL<DealSchema>();
             app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
         }
     }
 }

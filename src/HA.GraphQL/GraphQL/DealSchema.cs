@@ -4,9 +4,9 @@ using HA.GraphQL.Queries;
 
 namespace HA.GraphQL
 {
-    public class DemoSchema : Schema
+    public class DealSchema : Schema
     {
-        public DemoSchema(IDependencyResolver resolver) : base(resolver)
+        public DealSchema(IDependencyResolver resolver) : base(resolver)
         {
             Query = resolver.Resolve<DealQuery>();
         }

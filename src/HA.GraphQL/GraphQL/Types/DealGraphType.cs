@@ -7,8 +7,7 @@ namespace HA.GraphQL.Types
     {
         public DealGraphType()
         {
-            Name = "Deal";
-            Field(x => x.Id, type: typeof(IdGraphType)).Description("Deal Id");
+            Field(x => x.Id).Description("Deal Id");
             Field(x => x.Name).Description("Deal Name");
             Field(x => x.Description).Description("Deal descriptions");
         }
