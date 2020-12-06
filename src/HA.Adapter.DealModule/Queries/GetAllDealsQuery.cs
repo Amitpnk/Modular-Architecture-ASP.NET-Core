@@ -42,7 +42,7 @@ namespace HA.Adapter.DealModule.Queries
 
             var DealsList = await _genericRepository.GetPagedReponseAsync(request.PageNumber, request.PageSize);
             var DealsListVm = _mapper.Map<List<DealViewModel>>(DealsList);
-            return new PagedResponse<DealViewModel>(DealsListVm, DealsList.Count, request.PageNumber, request.PageSize);
+            return new PagedResponse<DealViewModel>(DealsListVm, DealsList.TotalCount, request.PageNumber, request.PageSize);
         }
     }
 }
