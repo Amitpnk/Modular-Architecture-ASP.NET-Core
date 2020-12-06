@@ -1,0 +1,40 @@
+{
+  deal(id:"a1bb0bb1-bd10-4de9-b03b-60486102f85b"){
+    id
+    name
+    description
+  }
+}
+------------------
+{
+  deals{
+    id
+    name
+    description
+  }
+}
+------------------
+# Remane or alias
+{
+  results: deals{
+    id
+    dealname : name
+    description
+  }
+}
+------------------
+# Two queries
+{
+  id1:deal(id:"75f1b113-b17a-4203-ba52-44f77fe67977"){id name description}
+  id2:deal(id:"a1bb0bb1-bd10-4de9-b03b-60486102f85b"){id name description}
+}
+------------------
+# Fragment
+{
+  id1:deal(id:"75f1b113-b17a-4203-ba52-44f77fe67977"){...comparisonFields}
+  id2:deal(id:"a1bb0bb1-bd10-4de9-b03b-60486102f85b"){...comparisonFields}
+}
+
+fragment comparisonFields on Deal{
+  id, name, description
+}
