@@ -44,7 +44,7 @@ namespace HA.Adapter.Persistence.Repositories
         {
             var count = table.Count();
             var items = table.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
-            return new PagedList<TEntity>(items, count, pageNumber, pageSize);
+            return await Task.Run(() => new PagedList<TEntity>(items, count, pageNumber, pageSize));
         }
 
         public bool SaveChanges()

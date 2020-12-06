@@ -11,7 +11,6 @@ namespace HA.GraphQL.Types
             Field(x => x.Id, type: typeof(IdGraphType)).Description("Deal Id");
             Field(x => x.Name).Description("Deal Name");
             Field(x => x.Description).Description("Deal descriptions");
-            //Field<GuidGraphType>("id");
         }
     }
 }
