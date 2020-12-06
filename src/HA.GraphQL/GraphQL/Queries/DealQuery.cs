@@ -1,11 +1,8 @@
-﻿using GraphQL;
-using GraphQL.Types;
-using HA.Adapter.Persistence.Context;
+﻿using GraphQL.Types;
 using HA.Application.Contract;
 using HA.Domain.Entities;
 using HA.GraphQL.Types;
 using System;
-using System.Linq;
 
 namespace HA.GraphQL.Queries
 {
