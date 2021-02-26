@@ -11,7 +11,8 @@ environment:
 install:
     - choco install "sonarscanner-msbuild-netcoreapp2.0" -y
 before_build:
-    - cmd: nuget restore ModularArch.sln
+    - echo "##vso[task.setvariable variable=JAVA_HOME]$JAVA_HOME_11_X64"
+    - dotnet restore ModularArch.sln
     - dotnet tool install -g dotnet-sonarscanner
     # AppVeyor does not decrypt the secure env vars for PR builds (this prevents someone from submitting PR with malicious build script displaying those variables). So when AppVeyor initiates a Sonar analysis it immediately fails with error "The format of the analysis property sonar.login= is invalid". The only solution is to prevent PR builds initiating Sonar analysis using powershell. See https://medium.com/@stef.heyenrath/how-to-fix-sonarcloud-issue-in-a-github-pr-when-using-appveyor-integration-8909b49406b4    
     - ps: 'if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { & dotnet sonarscanner begin /k:"Amitpnk_Hexagonal-Architecture-ASP.NET-Core" /o:"amitpnk" /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=$env:my_sonartoken_encrypted" }'

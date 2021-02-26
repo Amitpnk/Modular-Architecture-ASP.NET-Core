@@ -1,4 +1,4 @@
-![.NET Core](https://github.com/Amitpnk/Hexagonal-Architecture-ASP.NET-Core/workflows/.NET%20Core/badge.svg)
+[![.NET Core](https://github.com/Amitpnk/Modular-Architecture-ASP.NET-Core/actions/workflows/dotnet-core.yml/badge.svg)](https://github.com/Amitpnk/Modular-Architecture-ASP.NET-Core/actions/workflows/dotnet-core.yml)
 [![Build status](https://ci.appveyor.com/api/projects/status/bdlg2fek0oemwpd4?svg=true)](https://ci.appveyor.com/project/Amitpnk/hexagonal-architecture-asp-net-core)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Modular-Architecture-ASP.NET-Core&metric=bugs)](https://sonarcloud.io/dashboard?id=Amitpnk_Modular-Architecture-ASP.NET-Core)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Modular-Architecture-ASP.NET-Core&metric=code_smells)](https://sonarcloud.io/dashboard?id=Amitpnk_Modular-Architecture-ASP.NET-Core)
