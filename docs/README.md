@@ -1,5 +1,5 @@
 [![.NET Core](https://github.com/Amitpnk/Modular-Architecture-ASP.NET-Core/actions/workflows/dotnet-core.yml/badge.svg)](https://github.com/Amitpnk/Modular-Architecture-ASP.NET-Core/actions/workflows/dotnet-core.yml)
-[![Build status](https://ci.appveyor.com/api/projects/status/bdlg2fek0oemwpd4?svg=true)](https://ci.appveyor.com/project/Amitpnk/hexagonal-architecture-asp-net-core)
+[![Build status](https://ci.appveyor.com/api/projects/status/bdlg2fek0oemwpd4?svg=true)](https://ci.appveyor.com/project/Amitpnk/modular-architecture-asp-net-core)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Modular-Architecture-ASP.NET-Core&metric=bugs)](https://sonarcloud.io/dashboard?id=Amitpnk_Modular-Architecture-ASP.NET-Core)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Modular-Architecture-ASP.NET-Core&metric=code_smells)](https://sonarcloud.io/dashboard?id=Amitpnk_Modular-Architecture-ASP.NET-Core)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Amitpnk_Modular-Architecture-ASP.NET-Core&metric=coverage)](https://sonarcloud.io/dashboard?id=Amitpnk_Modular-Architecture-ASP.NET-Core)
@@ -13,6 +13,16 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/cdfa9a0107e44a048a1bb69c529c6f62)](https://www.codacy.com/gh/Amitpnk/Hexagonal-Architecture-ASP.NET-Core/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Amitpnk/Hexagonal-Architecture-ASP.NET-Core&amp;utm_campaign=Badge_Grade)
 
 # Modular-Architecture-ASP.NET-Core
+
+## Modular Architecture
+
+Modular Architecture also sometime called as Modular Monilth Architecture 
+
+## About The Project
+
+Solution template which is built on Modular Architecture with all essential feature using .NET Core!
+s
+![image](img/Modular-arch.png)
 
 ## Status
 
