@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HA.Adapter.DealModule\HA.Adapter.DealModule.csproj" />
-    <ProjectReference Include="..\HA.Adapter.Persistence\HA.Adapter.Persistence.csproj" />
+    <ProjectReference Include="..\HA.Adapter.DealModule\HA.Module.Deal.csproj" />
+    <ProjectReference Include="..\HA.Adapter.Persistence\HA.Module.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

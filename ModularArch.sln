@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Domain", "src\HA.Domain\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Application", "src\HA.Application\HA.Application.csproj", "{2ABB1A87-C12F-49F6-B673-5139B4F13606}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Adapter.Persistence", "src\HA.Adapter.Persistence\HA.Adapter.Persistence.csproj", "{F7B35304-7785-47D4-9239-64FADFB9CA5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Module.Persistence", "src\HA.Adapter.Persistence\HA.Module.Persistence.csproj", "{F7B35304-7785-47D4-9239-64FADFB9CA5D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.DatabaseMigration", "src\HA.DatabaseMigration\HA.DatabaseMigration.csproj", "{AD1F253B-2634-467C-BFA4-AD9319CA3AFF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.WebAPI", "src\HA.WebAPI\HA.WebAPI.csproj", "{FF90BAD1-56E8-4351-8CDB-F62B7E6CAFE7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Adapter.DealModule", "src\HA.Adapter.DealModule\HA.Adapter.DealModule.csproj", "{3116E006-C9B8-4FA3-B61A-533AF18AE153}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Module.Deal", "src\HA.Adapter.DealModule\HA.Module.Deal.csproj", "{3116E006-C9B8-4FA3-B61A-533AF18AE153}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F609564E-8C33-4F72-9DC7-4E13D9D52CA3}"
 EndProject
@@ -21,15 +21,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{71022FAB-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{CE1B7235-D02E-406B-A05E-BE1B0CFD96D1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deal", "Deal", "{11A8E1B9-2B97-4D7C-B34A-C66FAFFF9015}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DealModule", "DealModule", "{11A8E1B9-2B97-4D7C-B34A-C66FAFFF9015}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseAdapter", "DatabaseAdapter", "{F64CC1CD-DA16-4E69-91B5-8CCA545A6544}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseModule", "DatabaseModule", "{F64CC1CD-DA16-4E69-91B5-8CCA545A6544}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CE2B18FD-E675-431A-8654-8FCA55485E99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Adapter.Persistence.Unit.Test", "src\HA.Adapter.Persistence.Unit.Test\HA.Adapter.Persistence.Unit.Test.csproj", "{27374D26-BB48-4E01-9280-027CEF1BB1B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Module.Persistence.Unit.Test", "src\HA.Adapter.Persistence.Unit.Test\HA.Module.Persistence.Unit.Test.csproj", "{27374D26-BB48-4E01-9280-027CEF1BB1B8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Adapter.DealModule.Unit.Test", "src\HA.Adapter.DealModule.Unit.Test\HA.Adapter.DealModule.Unit.Test.csproj", "{F48B6F9A-F1E1-4F6C-8926-0DCCF8B3BBCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Module.Deal.Unit.Test", "src\HA.Adapter.DealModule.Unit.Test\HA.Module.Deal.Unit.Test.csproj", "{F48B6F9A-F1E1-4F6C-8926-0DCCF8B3BBCE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Application.Unit.Test", "src\HA.Application.Unit.Test\HA.Application.Unit.Test.csproj", "{84733491-76A1-41D9-8D94-2FDC3E8D8F17}"
 EndProject
@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.Domain.Unit.Test", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.WebAPI.Integration.Test", "src\HA.WebAPI.Integration.Test\HA.WebAPI.Integration.Test.csproj", "{2AAFB4A6-51AC-4ED6-9866-574D2A323E7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HA.GraphQL", "src\HA.GraphQL\HA.GraphQL.csproj", "{47A10ED5-CF64-4E8F-9E5D-8D4E9FC2D53E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HA.GraphQL", "src\HA.GraphQL\HA.GraphQL.csproj", "{47A10ED5-CF64-4E8F-9E5D-8D4E9FC2D53E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

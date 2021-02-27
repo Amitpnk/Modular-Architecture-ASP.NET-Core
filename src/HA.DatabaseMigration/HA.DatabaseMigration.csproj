@@ -12,7 +12,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\HA.Adapter.Persistence\HA.Adapter.Persistence.csproj" />
+    <ProjectReference Include="..\HA.Adapter.Persistence\HA.Module.Persistence.csproj" />
   </ItemGroup>
 
 
